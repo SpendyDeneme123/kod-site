@@ -1,6 +1,6 @@
 // represents the haste-application
 var haste = function() {
-	this.appName = "Hastebin Plus";
+	this.appName = "XDT Hastebin Plus";
 	this.$textarea = $('textarea');
 	this.$box = $('#code');
 	this.$code = $('#code code');
@@ -222,7 +222,7 @@ haste_document.prototype.save = function(data, callback) {
 			try {
 				callback($.parseJSON(res.responseText));
 			} catch (e) {
-				callback({message: 'Something went wrong!'});
+				callback({message: 'Birşeyler Yanlış Gitti!'});
 			}
 		}
 	});
