@@ -15,13 +15,6 @@
 <h1 class="logo">
   <span class="word1">XiR Dev. Team - Hastebin <i class="fas fa-plus faa-wrench animated"></i></span>
 </h1>
-<div class="theme-switch-wrapper">
-    <label class="theme-switch" for="checkbox">
-        <input type="checkbox" id="checkbox" />
-        <div class="slider round"></div>
-  </label>
-  <em>Enable Dark Mode!</em>
-</div>
 <div id="tools">
     <div class="save function" title="Kaydet [Ctrl + S]"></div>
     <div class="new function" title="Yeni [Ctrl + Space]"></div>
@@ -32,20 +25,6 @@
     <pre id="code" style="display:none;" tabindex="0"><code></code></pre>
     <textarea placeholder="Lütfen Yazı Giriniz..." spellcheck="false" style="display:none;"></textarea>
 </div>
-<script>
-const toggleSwitch = document.querySelector('.theme-switch input[type="checkbox"]');
 
-function switchTheme(e) {
-    if (e.target.checked) {
-        document.documentElement.setAttribute('data-theme', 'dark');
-    }
-    else {
-        document.documentElement.setAttribute('data-theme', 'light');
-    }    
-}
-
-toggleSwitch.addEventListener('change', switchTheme, false);
-
-</script>
 </body>
 </html>
