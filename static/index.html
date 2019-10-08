@@ -16,6 +16,12 @@
   <span class="word1">XiR Dev. Team - Hastebin <i class="fas fa-plus faa-wrench animated"></i></span>
   
 </h1>
+<div class="tooltip">
+<button onclick="myFunction()" onmouseout="outFunc()">
+  <span class="tooltiptext" id="myValue">Copy to clipboard</span>
+  Copy text
+  </button>
+</div>
 <div id="tools">
     <div class="save function" title="Kaydet [Ctrl + S]"></div>
     <div class="new function" title="Yeni [Ctrl + Space]"></div>
@@ -26,5 +32,22 @@
     <pre id="code" style="display:none;" tabindex="0"><code></code></pre>
     <textarea placeholder="Lütfen Yazı Giriniz..." spellcheck="false" style="display:none;"></textarea>
 </div>
+
+<script>
+function myFunction() {
+  var copyText = document.getElementById("myValue");
+  copyText.select();
+  copyText.setSelectionRange(0, 99999);
+  document.execCommand("copy");
+  
+  var tooltip = document.getElementById("myValue");
+  tooltip.innerHTML = "Copied: " + copyText.value;
+}
+
+function outFunc() {
+  var tooltip = document.getElementById("myValue");
+  tooltip.innerHTML = "Copy to clipboard";
+}
+</script>
 </body>
 </html>
