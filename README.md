@@ -1,3 +1,9 @@
+# XiR Developer Team
+Edited By MeliL 
+[Youtube](https://youtube.com/c/MeliL)
+[Discord](https://bit.ly/xirdcsunucu)
+[İnstagram](https://instagram.com/same.ttt)
+
 # Hastebin Plus
 Hastebin Plus is an open-source Pastebin software written in node.js, which is easily installable in any network.  
 It bases upon [haste](https://github.com/seejohnrun/haste-server) and got enhanced in matters of **Design, Speed and Simplicity**.
