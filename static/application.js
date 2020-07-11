@@ -1,6 +1,6 @@
 // represents the haste-application
 var haste = function() {
-	this.appName = "Weblecode By Scinely";
+	this.appName = "Weblecode by Scinely";
 	this.$textarea = $('textarea');
 	this.$box = $('#code');
 	this.$code = $('#code code');
