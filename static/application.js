@@ -1,6 +1,6 @@
 // represents the haste-application
 var haste = function() {
-	this.appName = "XDT Hastebin Plus";
+	this.appName = "Weblecode By Scinely";
 	this.$textarea = $('textarea');
 	this.$box = $('#code');
 	this.$code = $('#code code');
@@ -222,7 +222,7 @@ haste_document.prototype.save = function(data, callback) {
 			try {
 				callback($.parseJSON(res.responseText));
 			} catch (e) {
-				callback({message: 'Birşeyler Yanlış Gitti!'});
+				callback({message: 'Bir şeyler yanlış gitti!'});
 			}
 		}
 	});
