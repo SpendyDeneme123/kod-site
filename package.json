@@ -1,8 +1,8 @@
 {
-	"name": "hastebin-plus",
+	"name": "fynx-code-hastebin",
 	"version": "0.0.4",
 	"private": true,
-	"description": "Hastebin Plus is an open-source Pastebin software written in node.js.",
+	"description": "Fynx Code Hastebin is an open-source Pastebin software written in node.js.",
 	"keywords": [
 		"paste",
 		"pastebin",

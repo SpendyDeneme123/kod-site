@@ -1,8 +1,8 @@
 {
-	"name": "XDT Hastebin Plus",
-	"description": "Hastebin Plus is an open-source Pastebin software written in node.js.",
+	"name": "FynxCode Hastebin",
+	"description": "FynxCode Hastebin is an open-source Pastebin software written in node.js.",
 	"repository": "https://github.com/MarvinMenzerath/HastebinPlus",
-	"logo": "https://i.postimg.cc/KYHrK8dm/xirlogo.png",
+	"logo": "FYNX CODE LOGO.png",
 	"keywords": [
 		"node",
 		"paste",
