@@ -16,7 +16,7 @@ config.host = process.env.HOST || config.host || 'localhost';
 // logger-setup
 logger.remove(logger.transports.Console);
 logger.add(logger.transports.Console, {colorize: true, level: 'verbose'});
-logger.info('FYNX CODE HASTEBİN ');
+logger.info('RABEL CODE HASTEBİN ');
 
 // init file-storage
 var fileStorage = new FileStorage(config.dataPath);

@@ -1,8 +1,8 @@
 {
-	"name": "fynx-code-hastebin",
+	"name": "rabel-code-hastebin",
 	"version": "0.0.4",
 	"private": true,
-	"description": "Fynx Code Hastebin is an open-source Pastebin software written in node.js.",
+	"description": "RabeL Code Hastebin is an open-source Pastebin software written in node.js.",
 	"keywords": [
 		"paste",
 		"pastebin",

@@ -1,6 +1,6 @@
 {
-	"name": "FynxCode Hastebin",
-	"description": "FynxCode Hastebin is an open-source Pastebin software written in node.js.",
+	"name": "RabeLCode Hastebin",
+	"description": "RabeLCode Hastebin is an open-source Pastebin software written in node.js.",
 	"repository": "https://github.com/MarvinMenzerath/HastebinPlus",
 	"logo": "FYNX CODE LOGO.png",
 	"keywords": [
