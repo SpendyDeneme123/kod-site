@@ -42,7 +42,39 @@ const documentHandler = new DocumentHandler({
   createKey: config.createKey,
 });
 
-// Express app kurulumu
+// Statik dosya sıkıştırma (deploy öncesi yapılmalı!)
+// Ancak istersen deploy sırasında da çalıştırabilirsin, dikkat!
+// (Alternatif olarak bu kısmı build script'e almanı öneririm)
+const CleanCSS = require('clean-css');
+const UglifyJS = require('uglify-js');
+
+try {
+  const staticFiles = fs.readdirSync(__dirname + '/static');
+  staticFiles.forEach((file) => {
+    if (file.endsWith('.css') && !file.endsWith('.min.css')) {
+      const cssPath = __dirname + '/static/' + file;
+      const minCssPath = cssPath.replace('.css', '.min.css');
+      const input = fs.readFileSync(cssPath, 'utf8');
+      const output = new CleanCSS().minify(input).styles;
+      fs.writeFileSync(minCssPath, output, 'utf8');
+      logger.verbose(`Sıkıştırıldı: ${file} ==> ${minCssPath}`);
+    } else if (file.endsWith('.js') && !file.endsWith('.min.js')) {
+      const jsPath = __dirname + '/static/' + file;
+      const minJsPath = jsPath.replace('.js', '.min.js');
+      const result = UglifyJS.minify(fs.readFileSync(jsPath, 'utf8'));
+      if (result.error) {
+        logger.warn(`JS sıkıştırma hatası: ${file} => ${result.error}`);
+      } else {
+        fs.writeFileSync(minJsPath, result.code, 'utf8');
+        logger.verbose(`Sıkıştırıldı: ${file} ==> ${minJsPath}`);
+      }
+    }
+  });
+} catch (err) {
+  logger.warn('Statik dosya sıkıştırma sırasında hata: ' + err.message);
+}
+
+// Express app oluştur
 const app = express();
 
 app.get('/raw/:id', (req, res) => {
@@ -63,7 +95,7 @@ app.get('/:id', (req, res) => {
   res.sendFile(__dirname + '/static/index.html');
 });
 
-// **Önemli:** Vercel ortamında app.listen() olmamalı!
+// Vercel için app.listen yok, modülü export et
 // app.listen(config.port, config.host);
 
 module.exports = app;
