@@ -1,8 +1,69 @@
+const fs = require('fs');
 const express = require('express');
+const logger = require('winston');
+
+const DocumentHandler = require('./lib/document_handler.js');
+const FileStorage = require('./lib/file_storage.js');
+
+// Config dosyasını oku
+const config = JSON.parse(fs.readFileSync(__dirname + '/config.json', 'utf8'));
+config.port = process.env.PORT || config.port || 8080;
+config.host = process.env.HOST || config.host || 'localhost';
+
+// Logger ayarları
+logger.remove(logger.transports.Console);
+logger.add(logger.transports.Console, { colorize: true, level: 'verbose' });
+logger.info('RABEL CODE HASTEBİN ');
+
+// Dosya sistemi nesnesi oluştur
+const fileStorage = new FileStorage(config.dataPath);
+
+// Config içindeki dokümanları dosya sisteminden yükle
+for (const name in config.documents) {
+  const path = config.documents[name];
+  try {
+    const data = fs.readFileSync(path, 'utf8');
+    if (data) {
+      fileStorage.set(name, data, function (success) {});
+      logger.verbose('Döküman Oluşturuldu: ' + name + " ==> " + path);
+    } else {
+      logger.warn('Döküman Boş: ' + name + " ==> " + path);
+    }
+  } catch (err) {
+    logger.warn('Döküman Bulunamadi: ' + name + " ==> " + path);
+  }
+}
+
+// DocumentHandler konfigürasyonu
+const documentHandler = new DocumentHandler({
+  store: fileStorage,
+  maxLength: config.maxLength,
+  keyLength: config.keyLength,
+  createKey: config.createKey,
+});
+
+// Express app kurulumu
 const app = express();
 
-app.get('/', (req, res) => {
-  res.send('Hello from Vercel!');
+app.get('/raw/:id', (req, res) => {
+  return documentHandler.handleRawGet(req.params.id, res);
 });
+
+app.post('/documents', (req, res) => {
+  return documentHandler.handlePost(req, res);
+});
+
+app.get('/documents/:id', (req, res) => {
+  return documentHandler.handleGet(req.params.id, res);
+});
+
+app.use(express.static('static'));
+
+app.get('/:id', (req, res) => {
+  res.sendFile(__dirname + '/static/index.html');
+});
+
+// **Önemli:** Vercel ortamında app.listen() olmamalı!
+// app.listen(config.port, config.host);
 
 module.exports = app;
