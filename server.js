@@ -77,5 +77,8 @@ app.get('/:id', function(req, res, next) {
 	res.sendFile(__dirname + '/static/index.html');
 });
 
-app.listen(config.port, config.host);
-logger.info(config.host + ':' + config.port + 'Portuyla site açıldı. ');
+// **Vercel uyumu için app.listen kaldırıldı**
+// app.listen(config.port, config.host);
+// logger.info(config.host + ':' + config.port + 'Portuyla site açıldı. ');
+
+module.exports = app;
